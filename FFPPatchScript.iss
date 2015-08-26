@@ -13,7 +13,7 @@ OutputBaseFilename=Final_Frontier_Plus_{#Version}_Patch
 Compression=lzma
 SolidCompression=yes
 DisableProgramGroupPage=yes
-SetupIconFile=FinalFrontierIcon.ico
+SetupIconFile="FinalFrontierIcon.ico"
 
 [Types]
 Name: "full"; Description: "Default installation"
@@ -29,12 +29,14 @@ Name: "italian"; MessagesFile: "compiler:Languages\Italian.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags:
+Name: "steamicon"; Description: "Create a desktop icon (for users with Steam)"; GroupDescription: "{cm:AdditionalIcons}"; Flags: exclusive unchecked
 
 [Files]
 Source: "{#PatchSource}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs; Components: FinalFrontierPlus
 
 [Icons]
 Name: "{userdesktop}\Final Frontier Plus"; Filename: "{code:RegKey}\Civ4BeyondSword.exe"; Parameters: "mod=\Final Frontier Plus"; Tasks: desktopicon; IconFilename: "{app}\FinalFrontierIcon.ico"
+Name: "{userdesktop}\Final Frontier Plus (Steam)"; Filename: "{reg:HKLM\Software\Valve\Steam,InstallPath}\Steam.exe"; Parameters: "-applaunch 8800 mod=""\Final Frontier Plus"""; Tasks: steamicon; IconFilename: {app}\FinalFrontierIcon.ico
 
 [Run]
 Filename: "{code:RegKey}\Civ4BeyondSword.exe"; Parameters: "mod=\Final Frontier Plus"; Description: "{cm:LaunchProgram,Final Frontier Plus}"; Flags: nowait postinstall skipifsilent
