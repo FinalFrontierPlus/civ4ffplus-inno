@@ -28,7 +28,7 @@ Name: "german"; MessagesFile: "compiler:Languages\German.isl"
 Name: "italian"; MessagesFile: "compiler:Languages\Italian.isl"
 
 [Tasks]
-Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags:
+Name: "desktopicon"; Description: "Create a desktop icon (for users without Steam)"; GroupDescription: "{cm:AdditionalIcons}"; Flags: exclusive
 Name: "steamicon"; Description: "Create a desktop icon (for users with Steam)"; GroupDescription: "{cm:AdditionalIcons}"; Flags: exclusive unchecked
 
 [Files]
@@ -39,7 +39,8 @@ Name: "{userdesktop}\Final Frontier Plus"; Filename: "{code:RegKey}\Civ4BeyondSw
 Name: "{userdesktop}\Final Frontier Plus (Steam)"; Filename: "{reg:HKLM\Software\Valve\Steam,InstallPath}\Steam.exe"; Parameters: "-applaunch 8800 mod=""\Final Frontier Plus"""; Tasks: steamicon; IconFilename: {app}\FinalFrontierIcon.ico
 
 [Run]
-Filename: "{code:RegKey}\Civ4BeyondSword.exe"; Parameters: "mod=\Final Frontier Plus"; Description: "{cm:LaunchProgram,Final Frontier Plus}"; Flags: nowait postinstall skipifsilent
+Filename: "{code:RegKey}\Civ4BeyondSword.exe"; Parameters: "mod=\Final Frontier Plus"; Description: "{cm:LaunchProgram,Final Frontier Plus}"; Flags: nowait postinstall skipifsilent unchecked
+Filename: "{reg:HKLM\Software\Valve\Steam,InstallPath}\Steam.exe"; Parameters: "-applaunch 8800 mod=""\Final Frontier Plus"""; Description: "{cm:LaunchProgram,Final Frontier Plus (with Steam)}"; Flags: nowait postinstall skipifsilent unchecked
 
 [Code]
 function RegKeyHelper(CurrentUser: Integer; LocalMachine: Integer; Param: String): String;
